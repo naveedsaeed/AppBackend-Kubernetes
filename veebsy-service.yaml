@@ -1,0 +1,140 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2020-10-04T11:59:26Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "144"
+    selfLink: /api/v1/namespaces/default/services/kubernetes
+    uid: ee7ee51a-fdd6-4c8f-92ce-e98d76b6139c
+  spec:
+    clusterIP: 10.100.0.1
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"run":"test-svc"},"name":"test-svc","namespace":"default"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":80},{"name":"authenticate","port":8080,"protocol":"TCP","targetPort":8080},{"name":"eureka","port":8761,"protocol":"TCP","targetPort":8761},{"name":"https","port":443,"protocol":"TCP","targetPort":443},{"name":"corporate","port":11001,"protocol":"TCP","targetPort":11001},{"name":"users","port":11002,"protocol":"TCP","targetPort":11002},{"name":"features","port":11004,"protocol":"TCP","targetPort":11004}],"selector":{"run":"test-svc"},"type":"LoadBalancer"}}
+    creationTimestamp: "2021-04-24T15:11:38Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      run: test-svc
+    name: test-svc
+    namespace: default
+    resourceVersion: "50223156"
+    selfLink: /api/v1/namespaces/default/services/test-svc
+    uid: e3ab42de-a59c-41ad-91b3-67bc031000bd
+  spec:
+    clusterIP: 10.100.155.3
+    externalTrafficPolicy: Cluster
+    ports:
+    - name: http
+      nodePort: 32249
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: authenticate
+      nodePort: 32399
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: eureka
+      nodePort: 30072
+      port: 8761
+      protocol: TCP
+      targetPort: 8761
+    - name: https
+      nodePort: 31877
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    - name: corporate
+      nodePort: 31634
+      port: 11001
+      protocol: TCP
+      targetPort: 11001
+    - name: users
+      nodePort: 30627
+      port: 11002
+      protocol: TCP
+      targetPort: 11002
+    - name: features
+      nodePort: 32459
+      port: 11004
+      protocol: TCP
+      targetPort: 11004
+    selector:
+      run: test-svc
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: ae3ab42dea59c41ad91b367bc031000b-590602473.eu-west-2.elb.amazonaws.com
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"run":"veebsy-prod"},"name":"veebsy-svc","namespace":"default"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":80},{"name":"authenticate","port":8080,"protocol":"TCP","targetPort":8080},{"name":"eureka","port":8761,"protocol":"TCP","targetPort":8761},{"name":"ssl","port":443,"protocol":"TCP","targetPort":443}],"selector":{"run":"veebsy-prod"},"type":"LoadBalancer"}}
+    creationTimestamp: "2020-11-05T05:50:42Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      run: veebsy-prod
+    name: veebsy-svc
+    namespace: default
+    resourceVersion: "28654195"
+    selfLink: /api/v1/namespaces/default/services/veebsy-svc
+    uid: f96eeefd-b03f-4a0b-bb4b-d3d664ff4b3a
+  spec:
+    clusterIP: 10.100.131.47
+    externalTrafficPolicy: Cluster
+    ports:
+    - name: http
+      nodePort: 31729
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: authenticate
+      nodePort: 32137
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: eureka
+      nodePort: 32139
+      port: 8761
+      protocol: TCP
+      targetPort: 8761
+    - name: ssl
+      nodePort: 31275
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    selector:
+      run: veebsy-prod
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: af96eeefdb03f4a0bbb4bd3d664ff4b3-244678142.eu-west-2.elb.amazonaws.com
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
