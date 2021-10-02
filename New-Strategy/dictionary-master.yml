@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dictionary-master
+  labels:
+    app: dictionary-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : dictionary-master
+  template:
+    metadata:
+      labels:
+        app: dictionary-master
+    spec:
+      containers:
+      - name: dictionary-master
+        image: 116170239861.dkr.ecr.eu-west-2.amazonaws.com/veebsy/applicationfeatures:DictionaryMaster-0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 11004
+        env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: veebsy
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  dictionary-master-svc
+spec:
+  selector:
+    app:  dictionary-master
+  ports:
+  - port:  80
+    targetPort:  11004

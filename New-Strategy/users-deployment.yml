@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  labels:
+    app: user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+      - name: user
+        image: 116170239861.dkr.ecr.eu-west-2.amazonaws.com/veebsy/users:CorporateUsersOpration-0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 11002
+        env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: veebsy
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  user-svc
+spec:
+  selector:
+    app:  user
+  ports:
+  - port:  80
+    targetPort:  11002

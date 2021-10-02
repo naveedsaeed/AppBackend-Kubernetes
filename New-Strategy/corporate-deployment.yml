@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: corporate
+  labels:
+    app: corporate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : corporate
+  template:
+    metadata:
+      labels:
+        app: corporate
+    spec:
+      containers:
+      - name: corporate
+        image: 116170239861.dkr.ecr.eu-west-2.amazonaws.com/veebsy/corporate:Corporate-0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 11004
+        env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  corporate-svc
+spec:
+  selector:
+    app:  corporate
+  ports:
+  - port:  80
+    targetPort:  11004

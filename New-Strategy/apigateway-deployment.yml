@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: placelabapigateway
+  labels:
+    app: placelabapigateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : placelabapigateway
+  template:
+    metadata:
+      labels:
+        app: placelabapigateway
+    spec:
+      containers:
+      - name: placelabapigateway
+        image: 116170239861.dkr.ecr.eu-west-2.amazonaws.com/veebsy/apigateway:PlacelabApiGateway-0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: veebsy
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  placelabapigateway-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app:  placelabapigateway
+  ports:
+  - port:  80
+    targetPort:  8080
